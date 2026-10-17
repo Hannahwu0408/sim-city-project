@@ -35,9 +35,16 @@ void Residential::checkPowerLines(string i) {
 
 void Residential::checkAdjCells(vector<vector<int> > &vec, vector<vector<string> > &ogVec, int i, int j) {
 
+    // reset counts so each cell only sees its own neighbors
+    adjCellWorkers1 = 0;
+    adjCellWorkers2 = 0;
+    adjCellWorkers3 = 0;
+    adjCellWorkers4 = 0;
+    numPowerlines = 0;
+
     for (int m = i-1; m < i+2; m++) { //iterating through adjacent cells
         for (int n = j-1; n < j+2; n++) {
-            if (m < vecRows && n < vecCols && m >= 0 && n >= 0) { // making sure to not check nonexistent cells (negative)
+            if (m < vecRows && n < vecCols && m >= 0 && n >= 0 && !(m == i && n == j)) { // making sure to not check nonexistent cells (negative) or the cell itself
                 addNumWorkers(vec[m][n]);
                 checkPowerLines(ogVec[m][n]);
             }
@@ -53,8 +60,9 @@ void Residential::runResidential(vector<vector<string> > &ogVec, vector<vector<i
     int col_i = 0;
     
     for (int i = 0; i < vecRows; i++) {
+        col_i = 0; // reset column counter at the start of each row
         for (int j = 0; j < vecCols; j++) {
-            
+
             if (ogVec[i][j] == "R") { // checks if cell is residential
                 switch (tempVec[row_i][col_i]) { 
                     case 0: 

@@ -222,9 +222,9 @@ int main() {
 
     // Output total residential, industrial, commercial zone population. 
     cout << "Total Population : " << populationTotal << endl; 
-    cout << " > Total Residential Zone Popultion: " << rTotal << endl;
-    cout << " > Total Industrial Zone Popultion: " << iTotal << endl;
-    cout << " > Total Commercial Zone Popultion: " << cTotal << endl;
+    cout << " > Total Residential Zone Population: " << rTotal << endl;
+    cout << " > Total Industrial Zone Population: " << iTotal << endl;
+    cout << " > Total Commercial Zone Population: " << cTotal << endl;
 
     cout << "Total Pollution State: " << pollutionTotal << endl; 
     cout << " > Regional Pollution State: " << rPollutionTotal << endl; 

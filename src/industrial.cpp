@@ -23,10 +23,10 @@ void industrial(vector< vector<int> > &copyVec, vector< vector<string> > &origin
 
                     bool adj2 = false; 
                     int adj2num = 0; 
-                    for (int m = i-1; m < i+1; m++){ //iterating through adjacent cells
-                      for (int n = j-1; n < j+1; n++){
+                    for (int m = i-1; m < i+2; m++){ //iterating through adjacent cells
+                      for (int n = j-1; n < j+2; n++){
                         if (m>=0 && m < vecRows && n>=0 && n < vecCols && !(m==i && n==j)){
-                          if (copyVec[i][j] >= 2) { adj2num++; }
+                          if (copyVec[m][n] >= 2) { adj2num++; }
                           if (adj2num >= 2) { adj2 = true; break; }
                         }
                       }
@@ -42,10 +42,10 @@ void industrial(vector< vector<int> > &copyVec, vector< vector<string> > &origin
 
                   bool adj1 = false; 
                   int adj1num = 0; 
-                  for (int m = i-1; m < i+1; m++){ //iterating through adjacent cells
-                    for (int n = j-1; n < j+1; n++){
+                  for (int m = i-1; m < i+2; m++){ //iterating through adjacent cells
+                    for (int n = j-1; n < j+2; n++){
                       if (m>=0 && m < vecRows && n>=0 && n < vecCols && !(m==i && n==j)){
-                        if (copyVec[i][j] >= 1) { adj1num++; }
+                        if (copyVec[m][n] >= 1) { adj1num++; }
                         if (adj1num >= 2) { adj1 = true; break; }
                       }
                     }
@@ -53,13 +53,14 @@ void industrial(vector< vector<int> > &copyVec, vector< vector<string> > &origin
 
                   if (adj1 == true) { conditionMet(copyVec, i, j, pollutionVec); }
 
-                } 
+                }
 
-                
-                  bool adjPowerLine = false; 
+                if (copyVec[i][j] == 0 && available_workers >= 2) {
 
-                  for (int m = i-1; m < i+1; m++){ //iterating through adjacent cells
-                    for (int n = j-1; n < j+1; n++){
+                  bool adjPowerLine = false;
+
+                  for (int m = i-1; m < i+2; m++){ //iterating through adjacent cells
+                    for (int n = j-1; n < j+2; n++){
                       if (m>=0 && m < vecRows && n>=0 && n < vecCols && !(m==i && n==j)){
                         if (originalVec[m][n] == "T" || originalVec[m][n] == "#") {
                           adjPowerLine = true; break; 
@@ -78,24 +79,26 @@ void industrial(vector< vector<int> > &copyVec, vector< vector<string> > &origin
                   // at least one cell with a population of at least 1
 
                     bool adj1= false; 
-                    for (int m = i-1; m < i+1; m++){ //iterating through adjacent cells
-                      for (int n = j-1; n < j+1; n++){
+                    for (int m = i-1; m < i+2; m++){ //iterating through adjacent cells
+                      for (int n = j-1; n < j+2; n++){
                         if (m>=0 && m < vecRows && n>=0 && n < vecCols && !(m==i && n==j)){
-                          if (copyVec[i][j] >= 1) { adj1 = true; break; }
+                          if (copyVec[m][n] >= 1) { adj1 = true; break; }
                         }
                       }
                     }
 
-                    if (adj1 == true) { 
-                      
-                      //cout << "0 + adjacent" << endl; 
-                      conditionMet(copyVec, i, j, pollutionVec); 
-                      
+                    if (adj1 == true) {
+
+                      //cout << "0 + adjacent" << endl;
+                      conditionMet(copyVec, i, j, pollutionVec);
+
                     }
 
                   }
 
-                } 
+                }
+
+                }
 
                 }
 

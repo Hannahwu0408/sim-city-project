@@ -1,0 +1,13 @@
+# Build output
+main
+main-debug
+*.o
+*.dSYM/
+
+# Editor / language server
+.ccls-cache/
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
